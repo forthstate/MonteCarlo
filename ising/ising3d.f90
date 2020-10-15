@@ -11,13 +11,11 @@ integer:: L, N, iter, x1, x2, y1, y2, z1, z2
 integer, dimension(:,:,:), allocatable:: lat
 
 !thermodynamic quanities
-real*8:: E=0,M=0,Ei,Ef,dE,r,E1=0,E2=0,Cv,M1=0,M2=0
+real*8:: E=0,M=0,Ei,Ef,dE,r,E1=0,E2=0,Cv,M1=0,M2=0,ksi
 
 !loop variables
 integer:: i, j, k, time, ii, jj, kk
 
-!strings for visualisation file
-!character(len=20):: Time="Time",E=
 
 !initialisation--------------------------
 print*,"enter lattice side size: "
@@ -63,9 +61,6 @@ print*, "enter number of MCS iterations: "
 read*, iter
 
 !write to file
-!open(10,file='ising3d_data.csv') !file for MCS data !uncommect if needed
-!write(10,'(*(g0.7,:,","))')"Time","E","M","E/N","M/N"
-!write(10,'(*(g0.7,:,","))')0,E,M,E/float(N),M/float(N)
 open(15,file='ising3d_Cv_data.csv') !file for Temperature data
 write(15,'(*(g0.7,:,","))')"Temp","E","E/N","Cv","ksi"
 do while(KT>=3.8)
@@ -111,8 +106,7 @@ do while(KT>=3.8)
         end do
       end do
     end do
-    !write first data
-    !write(10,'(*(g0.7,:,","))')time,E,M,E/float(N),M/float(N)
+    
     !after equilibrium
     if(time>10000)then
       E1=E1+E
@@ -136,7 +130,7 @@ do while(KT>=3.8)
   KT=KT-0.02
   
 end do   
-!close(10)
+
 close(15)                  
 end program ising3d
 
