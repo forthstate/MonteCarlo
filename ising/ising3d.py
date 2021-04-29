@@ -20,7 +20,7 @@ B = 0 #T, external magnetic field
 L = int(input('\nenter LATTICE side size: '))
 N = L*L*L #number of spins in lattice
 
-#initialisation
+#initialization
 lattice = np.ones((L,L,L)) #all spins UP
 
 #initial energy
@@ -44,7 +44,7 @@ for i in range(L):
             M+=lattice[i,j,k]
             
 E *= 0.5
-print('\nInitial Lattice energy: ',E)
+print('\nInitial Lattice Energy: ',E)
 print('\nInitial Lattice Magnetisation: ',M)
 #Metropolis---------------------------------------------------
 iter = int(input('\nenter number of MCS iterations: '))
